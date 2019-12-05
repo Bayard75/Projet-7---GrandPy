@@ -28,7 +28,7 @@ def mock_parser(phrase):
     print(decoupe)
     phrase_decoupe = " ".join(decoupe)
     return phrase_decoupe
-b ="Salut GrandPY peux tu me donner l'adresse d'Openclassrooms ?"
+b ="Salut ! Peux tu me dire ou se trouve le louvres ?"
 a = mock_parser(b)
 print(a)
 
