@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
 import os,json
+import urllib.request
 
-working_dir = os.getcwd()
-resources_dir = os.path.join(working_dir,'resources')
-parser_emplacement = os.path.join(resources_dir,'parser.json')
-print(parser_emplacement)
-with open(r'C:\Users\mbaya\OneDrive\Documents\grandpy\app\resources\parser.json') as file:
+
+API_MAPS_KEY= 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
+
+with open(r'app\resources\parser.json') as file:
     parser = json.load(file)
 
 def parserKiller(phrase_a_clean):
@@ -21,3 +21,7 @@ def parserKiller(phrase_a_clean):
     phrase_decoupe = " ".join(decoupe)
     return phrase_decoupe
 
+def google_api(returned_response):
+    # With our returned reponse search the adresse through the google API
+    # Should return a json file
+    pass
