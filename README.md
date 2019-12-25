@@ -6,3 +6,7 @@ The app will be using the following stack :
 - HTML/CSS
 - Javascript
 - Bootstrap
+
+This application goal is to take in a user input as a question for example : "Hi GrandPy can you give me the adress of the Louvres ?".
+Python will then parse the question for keywords, get the coordinates (Google maps API) of the louvres, send them to JS et post a map of the adress.
+Then the bot will call on the wikipedia API to give us some information on the location.
