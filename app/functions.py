@@ -1,6 +1,8 @@
 #This file will host all of our python functions
 import os, json
 
+GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
+
 try : 
     with open('app/parser.json','r') as file:
         parser_json = json.load(file)
@@ -22,15 +24,18 @@ def parserKiller(sentence_listed):
     '''This function will take in a list of words
         put it through our parser and return a string with fewer words'''
     
+    sentence_parsed =[] #empty list that we store all the approved words
+
     for words in sentence_listed:
-        if words in parser_json:
-            sentence_listed.remove(words)
+        if words not in parser_json:
+            sentence_parsed.append(words)
         else:
             pass
-    
-    sentence_parsed = ' '.join(sentence_listed)
+
+    sentence_parsed = ' '.join(sentence_parsed)
     return sentence_parsed
 
+api_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
 
 if __name__=='__main__':
     pass
