@@ -1,5 +1,5 @@
 #This file will host all of our python functions
-import os, json
+import os, json, requests
 
 GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
 
@@ -35,8 +35,22 @@ def parserKiller(sentence_listed):
     sentence_parsed = ' '.join(sentence_parsed)
     return sentence_parsed
 
-api_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
-
 if __name__=='__main__':
     pass
+
+
+class Maps():
+    '''This class will regroup all the functions
+    associeted to the google api calls from python side'''
+
+    @staticmethod
+    def google_api(sentence_parsed):
+        '''This method will take in a sentence parsed and
+            return a json file with a formatted adresse 
+            latitude and longitude.'''
+    
+        maps_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
+        location_infos = requests.get(maps_url_format).json()
+        location_infos = location_infos['candidates'][0] #We only take the first match
+        return location_infos
 
