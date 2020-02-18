@@ -51,6 +51,11 @@ class Maps():
     
         maps_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
         location_infos = requests.get(maps_url_format).json()
-        location_infos = location_infos['candidates'][0] #We only take the first match
-        return location_infos
+        if location_infos['status'] == 'OK':
+            location_infos = (location_infos['candidates'][0]) #We only take the first match and the adress
+            return location_infos
+        else:
+            return False
 
+if __name__=="__main__":
+    pass
