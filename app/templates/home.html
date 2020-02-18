@@ -11,25 +11,32 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="static/css/Header-Dark.css">
     <link rel="stylesheet" href="static/css/styles.css">
+
 </head>
 
 <body>
     <div>
         <div class="header-dark">
             <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
-                <div class="container"><img src="{{url_for('static',filename='img/papy.jpg')}}" style="width: 98px;margin-left: 100px;"><a class="navbar-brand" style="margin-right: 100px;" href="#">GrandPy The Bot</a><button class="navbar-toggler" data-toggle="collapse"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
-            </nav>
+                <div class="container"><img src="{{url_for('static',filename='img/papy.jpg')}}" style="width: 98px;margin-left: 100px;"><a class="navbar-brand" style="margin-right: 100px;" href="#">GrandPy The Bot</a>
             <div class="container hero">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <h1 class="text-center">Donne moi un adresse et je te raconterais son histoire !</h1>
+                        <h1 class="text-center">Donne moi une adresse et je te raconterais son histoire !</h1>
                     </div>
                 </div>
+                <label>Quel est votre question ? <input type="text" name ="user_input" id="value" /></label><br />
+                  <button type="button" id="button">Envoyer</button>
+                <div id="question"></div>
+                <div id="adresse"></div>
+                
             </div>
         </div>
     </div>
-    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap/js/jquery.min.js')}}"></script>
     <script src="{{url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/home.js')}}"></script>
+
 </body>
 
 </html>

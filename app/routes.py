@@ -1,4 +1,4 @@
-from flask import render_template,request, jsonify, make_response
+from flask import render_template,request, jsonify, make_response, request
 from app.functions import *
 from app import app
 
@@ -9,13 +9,14 @@ def home():
 
 @app.route('/submit', methods=['GET','POST'])
 def submit():
-    if request.method =='POST':
-        user_input = request.form.get("user_input") #The type of this will be NoneType 
-        user_input = str(user_input) #We change it to str to avoid Attribute error with the following function
-        listed = sentence_to_list(user_input)
-        parsed = parserKiller(listed)
-        locations_infos = Maps.google_api(parsed)
-        info_jsonified = jsonify(adresse = locations_infos["formatted_address"],
-                                latitude = locations_infos["geometry"]["location"]["lat"],
-                                longitude= locations_infos["geometry"]["location"]["lng"])
+    if request.method == 'POST':
+        question = request.get_json()["question"]
+        # Once we have our question stored we can parse it !
+        sentence_listed = sentence_to_list(question)
+        sentence_parsed = parserKiller(sentence_listed)
+        # Our question has been parsed time to send it to the google API
+        location = Maps.google_api(sentence_parsed)
+        info_jsonified = jsonify(adresse = location["formatted_address"],
+                                latitude = location["geometry"]["location"]["lat"],
+                                longitude= location["geometry"]["location"]["lng"])
         return info_jsonified

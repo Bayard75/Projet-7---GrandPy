@@ -1,21 +1,29 @@
-function send(){
-    let body = {value : document.getElementById("value").value}
-    let request = new XMLHttpRequest();
-    
-    request.onreadystatechange = function(){
-      if(this.readyState == XMLHttpRequest.DONE){
-        let response = JSON.parse(this.responseText);
-        console.log(response);
-        document.getElementById("result").innerHTML = response;
-      }    
-    }
-    request.open("POST","http://127.0.0.1:5000/submit");
-    request.setRequestHeader("Content-Type","application/json");
-    request.send();
-    
-  }
-  
-  let submit = document.getElementById("button");
-  submit.addEventListener("click",function(event){
-    send();
-})
+function fetching(){
+      let body = {question : document.getElementById("value").value};
+      let myHeaders = new Headers();
+      myHeaders.append("COntent-Type","application/json"); //Important or request.get_json() return None 
+
+      fetch('/submit', {
+        // Specify the method
+        method: 'POST',
+        // A JSON payload
+        body: JSON.stringify(body),
+        headers: myHeaders
+      })
+      .then(function (response) { // At this point, Flask dealted with the question
+        let question = document.getElementById("question")
+        question.innerHTML = body["question"];
+        return response.json();
+      })
+      .then(function (data) {
+
+        let adresse = document.getElementById("adresse");
+        adresse.innerHTML = data["adresse"];
+      });
+      }
+
+      let submit = document.getElementById("button");
+      submit.addEventListener("click",function(event){
+        console.log('apppel de la fonction send()');
+        fetching();
+      })
