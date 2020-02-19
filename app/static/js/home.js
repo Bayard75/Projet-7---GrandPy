@@ -22,8 +22,9 @@ function fetching(){
       });
       }
 
-      let submit = document.getElementById("button");
-      submit.addEventListener("click",function(event){
+      let submit = document.getElementById("form");
+      submit.addEventListener("submit",function(event){
         console.log('apppel de la fonction send()');
         fetching();
+        event.preventDefault();
       })
