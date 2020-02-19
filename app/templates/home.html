@@ -28,9 +28,10 @@
                 <form id="form">
                 <label>Quel est votre question ?</label>
                  <input type="text" class="form-control" id="value" /><button type="submit" class="btn btn-primary">Envoyer</button>
-                </form>
-                <div id="question"></div>
+                </form><br/>
+                <div id="question"></div><br/>
                 <div id="adresse"></div>
+                <div id="map"></div>
                 
             </div>
         </div>
@@ -38,7 +39,9 @@
     <script src="{{url_for('static', filename='bootstrap/js/jquery.min.js')}}"></script>
     <script src="{{url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static',filename='js/home.js')}}"></script>
-
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE&callback=showMap">
+    </script>
 </body>
 
 </html>

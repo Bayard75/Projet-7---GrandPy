@@ -9,6 +9,7 @@ try :
 except:
     print('Le fichier parser.json est introuvable dans le working directory')
 
+
 def sentence_to_list(sentence_to_clean):
     '''This function will take in a sentence to clean
         and will return a list of words '''
@@ -24,11 +25,11 @@ def parserKiller(sentence_listed):
     '''This function will take in a list of words
         put it through our parser and return a string with fewer words'''
     
-    sentence_parsed =[] #empty list that we store all the approved words
+    sentence_parsed =[] #empty list where we store all the approved words
 
-    for words in sentence_listed:
-        if words not in parser_json:
-            sentence_parsed.append(words)
+    for word in sentence_listed:
+        if word not in parser_json:
+            sentence_parsed.append(word)
         else:
             pass
 
