@@ -1,7 +1,8 @@
 #This file will host all of our python functions
-import os, json, requests
+import os, json, requests, wikipedia
 
 GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
+
 
 try : 
     with open('app/parser.json','r') as file:
@@ -36,10 +37,6 @@ def parserKiller(sentence_listed):
     sentence_parsed = ' '.join(sentence_parsed)
     return sentence_parsed
 
-if __name__=='__main__':
-    pass
-
-
 class Maps():
     '''This class will regroup all the functions
     associeted to the google api calls from python side'''
@@ -58,5 +55,32 @@ class Maps():
         else:
             return False
 
+class Wiki_API():
+    '''This class will handle all interactions
+        with the wikipedia API
+        This class should be able to :
+        -Find a page given a location
+        -Find and send back a summary of the '''
+    
+    def __init__(self,location_name, latitude,longitude):
+        
+        self.lat = str(latitude)
+        self.lng = str(longitude)
+        self.url = 'https://fr.wikipedia.org/w/api.php'
+        self.params = {
+            "action": "query",
+            "format": "json",
+            "list": "geosearch",
+            "gscoord":self.lat + "|" + self.lng
+        }
+
+    def get_page(self):
+        """This function will use the API to retrieve the page id
+            of a given location"""
+        
+        response = requests.get(self.url,params=self.params)
+        data = response.json()
+        # Algo/regrex to match adress name to wiki titles
+        return data
 if __name__=="__main__":
     pass
