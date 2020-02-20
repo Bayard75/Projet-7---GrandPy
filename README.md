@@ -12,5 +12,3 @@ Python will then parse the question for keywords, get the coordinates (Google ma
 Then the bot will call on the wikipedia API to give us some information on the location.
 
 api_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
-
-GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'

@@ -1,23 +1,26 @@
 
 function showMap(longitude, latitude)
 {
-  let location ={lat: latitude, lng: longitude};
+  let location ={lat: parseFloat(latitude), lng: parseFloat(longitude)};
   let options_map = {
     zoom : 15,
     center : location
   };
+
   let divMap = document.getElementById("map");
   let map = new google.maps.Map(divMap, options_map);
   let marker = new google.maps.Marker({position : location, map:map});
-
 }
 
 
 
 function fetching(){
+      
+      // I should set the animation here before the post request 
+
       let body = {question : document.getElementById("value").value};
       let myHeaders = new Headers();
-      myHeaders.append("Content-Type","application/json"); //Important or request.get_json() return None 
+      myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
 
       fetch('/submit', {
         // Specify the method
@@ -34,14 +37,20 @@ function fetching(){
       .then(function (data) {
 
         let adresse = document.getElementById("adresse");
+        
+        // I should remove the animation about here as we have our data 
+
         adresse.innerHTML = data["adresse"];
-        setTimeout(showMap(data["longitude"],data["latitude"]), 1000000);
+        let longitude = data["longitude"];
+        let latitude = data["latitude"];
+        console.log(data);
+        showMap(longitude,latitude);
+
       });
       }
 
       let submit = document.getElementById("form");
       submit.addEventListener("submit",function(event){
-        console.log('apppel de la fonction send()');
         fetching();
         event.preventDefault();
       })

@@ -7,7 +7,7 @@ from app import app
 def home():
     return render_template('home.html', title = 'Grandpy The Bot')
 
-@app.route('/submit', methods=['GET','POST'])
+@app.route('/submit', methods=['POST'])
 def submit():
     if request.method == 'POST':
         question = request.get_json()["question"]
@@ -15,8 +15,13 @@ def submit():
         sentence_listed = sentence_to_list(question)
         sentence_parsed = parserKiller(sentence_listed)
         # Our question has been parsed time to send it to the google API
-        location = Maps.google_api(sentence_parsed)
-        info_jsonified = jsonify(adresse = location["formatted_address"],
-                                latitude = location["geometry"]["location"]["lat"],
-                                longitude= location["geometry"]["location"]["lng"])
+
+        location_maps = Maps.google_api(sentence_parsed)
+        location_wiki = Wiki_API(sentence_parsed,
+                                location_maps["geometry"]["location"]["lat"],
+                                location_maps["geometry"]["location"]["lng"])
+
+        info_jsonified = jsonify(adresse = location_maps["formatted_address"],
+                                latitude = (location_maps["geometry"]["location"]["lat"]),
+                                longitude= (location_maps["geometry"]["location"]["lng"]))
         return info_jsonified
