@@ -1,5 +1,5 @@
 #This file will host all of our python functions
-import os, json, requests, wikipedia
+import os, json, requests
 
 GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
 
@@ -31,8 +31,6 @@ def parserKiller(sentence_listed):
     for word in sentence_listed:
         if word not in parser_json:
             sentence_parsed.append(word)
-        else:
-            pass
 
     sentence_parsed = ' '.join(sentence_parsed)
     return sentence_parsed
@@ -67,20 +65,40 @@ class Wiki_API():
         self.lat = str(latitude)
         self.lng = str(longitude)
         self.url = 'https://fr.wikipedia.org/w/api.php'
-        self.params = {
+
+    def get_page_id(self):
+        """This function will use the API to retrieve the page id
+            of a given location"""
+        
+        PARAMS = {
             "action": "query",
             "format": "json",
             "list": "geosearch",
             "gscoord":self.lat + "|" + self.lng
         }
 
-    def get_page(self):
-        """This function will use the API to retrieve the page id
-            of a given location"""
-        
-        response = requests.get(self.url,params=self.params)
+        response = requests.get(self.url,params=PARAMS)
         data = response.json()
-        # Algo/regrex to match adress name to wiki titles
-        return data
+        first_page_id = data["query"]["geosearch"][0]["pageid"]
+        return first_page_id
+    
+    def get_summary(self,page_id):
+        """This function will return the summary of a article
+            thanks to a page_id"""
+        
+        PARAMS = {
+            'action': 'query',
+            'format': 'json',
+            'prop': 'extracts',
+            'exintro': '',
+            'explaintext': '',
+            'pageids': page_id
+        }
+
+        response = requests.get(self.url, params=PARAMS)
+        data = response.json()
+        return data["query"]["pages"][str(page_id)]['extract']
+
 if __name__=="__main__":
     pass
+

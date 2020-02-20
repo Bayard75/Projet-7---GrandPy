@@ -10,6 +10,7 @@ function showMap(longitude, latitude)
   let divMap = document.getElementById("map");
   let map = new google.maps.Map(divMap, options_map);
   let marker = new google.maps.Marker({position : location, map:map});
+  //Add info on the marker
 }
 
 
@@ -37,15 +38,18 @@ function fetching(){
       .then(function (data) {
 
         let adresse = document.getElementById("adresse");
-        
+        let histoire = document.getElementById("histoire");
         // I should remove the animation about here as we have our data 
 
         adresse.innerHTML = data["adresse"];
         let longitude = data["longitude"];
         let latitude = data["latitude"];
         console.log(data);
-        showMap(longitude,latitude);
 
+        showMap(longitude,latitude);
+        histoire.innerHTML = data["summary"];
+
+        //Add catch !
       });
       }
 
