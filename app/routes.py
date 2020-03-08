@@ -22,9 +22,9 @@ def submit():
                                 location_maps["geometry"]["location"]["lng"])
         location_wiki_page_id = location_wiki.get_page_id()
         location_wiki_summary = location_wiki.get_summary(location_wiki_page_id)
-
         info_jsonified = jsonify(adresse = location_maps["formatted_address"],
                                 latitude = (location_maps["geometry"]["location"]["lat"]),
                                 longitude = (location_maps["geometry"]["location"]["lng"]),
                                 summary = location_wiki_summary)
-        return info_jsonified
+                                
+        return make_response(info_jsonified)
