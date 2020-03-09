@@ -211,7 +211,6 @@ function fetching()
             .catch(function(error)
             {
               showQuestion(error);
-              chatbox.removeChild(chatbox.lastChild);
             })
   };
 
