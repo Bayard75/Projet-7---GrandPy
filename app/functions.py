@@ -12,7 +12,7 @@ except:
 def sentence_to_list(sentence_to_clean):
     '''This function will take in a sentence to clean
         and will return a list of words '''
-
+    print(sentence_to_clean)
     sentence_to_clean = sentence_to_clean.lower()
     sentence_to_clean = sentence_to_clean.replace("'"," ")
     sentence_cleaned = sentence_to_clean.replace('"',' ')
@@ -23,7 +23,7 @@ def sentence_to_list(sentence_to_clean):
 def parserKiller(sentence_listed):
     '''This function will take in a list of words
         put it through our parser and return a string with fewer words'''
-    
+    print(sentence_listed)
     sentence_parsed =[] #empty list where we store all the approved words
 
     for word in sentence_listed:
@@ -42,6 +42,7 @@ class Maps():
         '''This method will take in a sentence parsed and
             return a json file with a formatted adresse 
             latitude and longitude.'''
+        print(sentence_parsed)
         maps_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
         location_infos = requests.get(maps_url_format).json()
         print(location_infos)
