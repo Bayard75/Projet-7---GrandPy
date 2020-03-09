@@ -10,7 +10,7 @@ class Bot
                       Laisse moi quelques secondes pour me rappeller d'une bonne histoire.`
       this.wikiNotFound = `Malheuresement l'age a eu raison de moi !
                           Je n'arrive pas a me souvenir d'accedote sur cette endroit.`
-      this.wikiFound =`Tiens j'en connais une bonne sur cette endroit, tu vas être epaté ?`
+      this.wikiFound =`Tiens j'en connais une bonne sur cette endroit, tu vas être epaté !minor`
     }
 
     botAdressResponse(adresse)
