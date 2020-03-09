@@ -40,19 +40,41 @@ class Bot
     
     botAnswer(answer)
     {
+        let botDiv = document.createElement('div');
+        botDiv.setAttribute('class','botMessage');
+
+        let template = `
+        <div class="media-body ml-3">
+          <div class="bg-light rounded py-2 px-3 mb-2">
+            <p class="text-small mb-0 text-muted">`+answer+`</p>
+          </div>
+        </div>
+      </div>`
+
+        botDiv.innerHTML = template;
+        chatbox.appendChild(botDiv);
+    }
+
+    botAnswerWikiFound(summary,title)
+    {
       let botDiv = document.createElement('div');
       botDiv.setAttribute('class','botMessage');
-
+      console.log(title)
       let template = `
-      <div class="media-body ml-3">
-        <div class="bg-light rounded py-2 px-3 mb-2">
-          <p class="text-small mb-0 text-muted">`+answer+`</p>
-        </div>
-      </div>
-    </div>`
+          <div class="media-body ml-3">
+            <div class="bg-light rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-muted">`+summary+`
+              <a href="https://fr.wikipedia.org/wiki/`+title+`" target="_blank">
+              En savoir plus sur Wikipedia !</a>
+              </p>
+            </div>
+          </div>
+        </div>`
+      
+        
+      botDiv.innerHTML = template;
+      chatbox.appendChild(botDiv);
 
-    botDiv.innerHTML = template;
-    chatbox.appendChild(botDiv);
     }
   }
 
@@ -182,7 +204,7 @@ function fetching()
                 {
                     grandPy.botAnswer(grandPy.wikiFound);
                     scrollToBottom();
-                    grandPy.botAnswer(data["summary"]);
+                    grandPy.botAnswerWikiFound(data["summary"],data["title"]);
                     scrollToBottom();
                 };    
             })

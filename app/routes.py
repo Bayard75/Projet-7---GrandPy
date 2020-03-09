@@ -18,8 +18,8 @@ def submit():
         # Our question has been parsed time to send it to the google API
 
         location_maps = Maps.google_api(sentence_parsed)
-        if location_maps == False:
-            return make_response(jsonify(location_maps))
+        if location_maps == False: 
+            return make_response(jsonify(location_maps)) # This should be recieved as undefied by JS
         location_wiki = Wiki_API(sentence_parsed,
                                 location_maps["geometry"]["location"]["lat"],
                                 location_maps["geometry"]["location"]["lng"])
@@ -31,10 +31,12 @@ def submit():
         location_wiki_summary = location_wiki.get_summary(location_wiki_page_id)
         if location_wiki_summary == False:
             return make_response(jsonify(location_wiki_summary))
+
         info_jsonified = jsonify(adresse = location_maps["formatted_address"],
                                 latitude = (location_maps["geometry"]["location"]["lat"]),
                                 longitude = (location_maps["geometry"]["location"]["lng"]),
-                                summary = location_wiki_summary)
+                                summary = (location_wiki_summary[1]),
+                                title = (location_wiki_summary[0]))
                                 
         return make_response(info_jsonified)
     

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>gradnpy</title>
+    <title>GrandPy The Bot </title>
     <link rel="stylesheet" href="{{url_for('static',filename ='bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="static/fonts/ionicons.min.css">
@@ -12,11 +13,12 @@
     <link rel="stylesheet" href="static/css/Footer-Dark.css">
     <link rel="stylesheet" href="static/css/Header-Dark.css">
     <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="shortcut icon" href="static/img/favicon.ico">
+
 </head>
 
 <body>
-    <div>
-        <div class="header-dark">
+    <div class="header-dark">
             <header>
                 <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
                     <div class="container"><a class="navbar-brand">GrandPy The Bot</a><img src="static/img/papy.jpg" style="width: 98px;"></div>
@@ -24,34 +26,32 @@
                 <h1 class="text-center" style="color: #d9d9d9;"><br>Donne moi une adresse et je te raconterais son histoire.<br><br></h1>
             </header>
             <main>
-                <div class="container-hero">
-                        <div class="col-md-8 offset-md-2" >
-                                <div class="px-4 py-5 bg-white container" id='chatbox'>
+                <div class="container-hero" >
+                        <div class="col-md-8 offset-md-2" id="container" >
+                            <div class="px-4 py-5 bg-white container" id='chatbox'>
                             <!--The chatbox begins here-->
 
 
-                                </div>
+                            </div>
                             <!---User input Area !-->
-
-                                    <form id='form' class="bg-light" >
-                                        <div class="input-group">
-                                                <input id ='value' type="text" placeholder="Quelle adresse cherches tu ?"class="form-control rounded-0 border-0 py-4 bg-light size='100'">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-primary">Envoyer</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                        <form id='form' class="bg-light" >
+                            <div class="input-group">
+                                <input id ='value' type="text" placeholder="Quelle adresse cherches tu ?" class="form-control rounded-0 border-0 py-4 bg-light size='100'">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                                     </div>
+                             </div>
+                        </form>
                         </div>
+                    </div>
                 </main>
         </div>
-    </div>
     <div class="footer-basic">
         <footer>
             <div class="social">
-                <a href="#"><i class="icon ion-social-instagram"></i>
-                </a><a href="#"><i class="icon ion-social-snapchat"></i>
-                </a><a href="#"><i class="icon ion-social-twitter"></i></a>
-                <a href="#"><i class="icon ion-social-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/bayard-maniraho-638998180/" target="_blank"><i class="icon ion-social-linkedin"></i>
+                </a><a href="https://github.com/Bayard75" target="_blank"><i class="icon ion-social-github"></i>
+                </a><a href="https://twitter.com/BayardManiraho" target="_blank"><i class="icon ion-social-twitter"></i></a>
             </div>
             <p class="copyright">Site crée par Bayard Maniraho @2020</p>
         </footer>
@@ -60,7 +60,7 @@
 
     <script src="static/js/jquery.min.js"></script>
     <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{url_for('static',filename='js/home.js')}}"></script>
+    <script src="{{url_for('static',filename='js/home.js')}}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE">
     </script>
 </body>

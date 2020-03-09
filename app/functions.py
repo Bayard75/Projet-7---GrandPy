@@ -1,6 +1,7 @@
 #This file will host all of our python functions
 import os, json, requests
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+
 try : 
     with open('app/parser.json','r') as file:
         parser_json = json.load(file)
@@ -43,6 +44,7 @@ class Maps():
             latitude and longitude.'''
         maps_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
         location_infos = requests.get(maps_url_format).json()
+        print(location_infos)
         if location_infos['status'] == 'OK':
             location_infos = (location_infos['candidates'][0]) #We only take the first match and the adress
             return location_infos
@@ -92,16 +94,18 @@ class Wiki_API():
             'prop': 'extracts',
             'exintro': '',
             'explaintext': '',
+            'exsentences':'1', # We return only the first sentence of the summary
             'pageids': page_id
         }
 
         try :
             response = requests.get(self.url, params=PARAMS)
             data = response.json()
-            return data["query"]["pages"][str(page_id)]['extract']
+            title = (data["query"]["pages"][str(page_id)]['title'])
+            summary = data["query"]["pages"][str(page_id)]['extract']
+            return (title,summary)
         except:
             return False
 
 if __name__=="__main__":
     pass
-
