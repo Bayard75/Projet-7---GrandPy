@@ -109,27 +109,15 @@ function showQuestion(question)
 
 }
 
-function growingSpinnerAnimation(situation)
+function growingSpinnerAnimation()
 {
-  if(situation === 1)
-  {  
+
       let botDivLoad = document.createElement('div');
       botDivLoad.setAttribute('id','loading')
-      let loadingTemplate = `
-          <div class="spinner-grow" role="status">
-          <span class="sr-only">Loading...</span>
-        </div></div>`
+      let loadingTemplate ='<div class="spinner-border text-primary"></div>'
       botDivLoad.innerHTML = loadingTemplate;
       chatbox.appendChild(botDivLoad);
-  }
-  else(situation === 2 )
-  {
-    let botDivLoad = document.getElementById('loading');
-    chatbox.removeChild(botDivLoad)
-
-  }
-}
-
+};
 
 function fetching()
 {
@@ -153,8 +141,8 @@ function fetching()
                 showQuestion(user_input.value);
                 scrollToBottom();
                 user_input.value = '';
-                growingSpinnerAnimation(1);
-                
+                growingSpinnerAnimation();
+
                 return response.json();
 
             })
@@ -162,6 +150,7 @@ function fetching()
             .then(function (data)
             {
                 // I should remove the animation about here as we have our data 
+                chatbox.removeChild(chatbox.lastChild);
                 let adresseState = grandPy.botAdressResponse(data['adresse']);
                 if (adresseState.found === false)
                 {
