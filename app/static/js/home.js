@@ -1,5 +1,6 @@
 let submit = document.getElementById('form');
-let submitNodeParent = submit.parentNode;
+let bottomChat = document.getElementById('bottom-chat')
+let chatbox = document.getElementById('chatbox');
 
 class Bot
 {
@@ -50,10 +51,25 @@ class Bot
       </div>
     </div>`
 
-    botDiv.innerHTML = template + '</div>';
-    submitNodeParent.insertBefore(botDiv,submit);
+    botDiv.innerHTML = template;
+    chatbox.appendChild(botDiv);
     }
   }
+
+
+let grandPy = new Bot;
+
+function delay(ms) {
+  return function(x) {
+    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+  };
+}
+
+function scrollToBottom() 
+{
+  let chatbox = document.getElementById('chatbox')
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
 
 function showMap(longitude, latitude)
 {
@@ -65,7 +81,7 @@ function showMap(longitude, latitude)
   };
   let createDivMap = document.createElement('div');
   createDivMap.setAttribute('class','map');
-  submitNodeParent.insertBefore(createDivMap,submit);
+  chatbox.appendChild(createDivMap);
   let divMap = document.getElementsByClassName('map')
   size = divMap.length;
   let map = new google.maps.Map(divMap[size-1], options_map);
@@ -73,62 +89,6 @@ function showMap(longitude, latitude)
   //Add info on the marker
 }
 
-
-
-function fetching()
-{
-      
-      // I should set the animation here before the post request 
-      let body = {question : document.getElementById("value").value};
-      let myHeaders = new Headers();
-      myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
-
-      fetch('/submit', {
-        // Specify the method
-        method: 'POST',
-        // A JSON payload
-        body: JSON.stringify(body),
-        headers: myHeaders
-      })
-      .then(function (response) { // At this point, Flask dealted with the question
-        let user_input = document.getElementById("value");
-        showQuestion(user_input.value);
-        user_input.value = '';
-        return response.json();
-      })
-      .then(function (data) {
-        // I should remove the animation about here as we have our data 
-        let grandPy = new Bot;
-        let adresseState = grandPy.botAdressResponse(data['adresse']);
-        console.log(adresseState)
-        if (adresseState.found === false)
-        {
-          grandPy.botAnswer(adresseState.message);
-        }
-        else
-        {
-          grandPy.botAnswer(adresseState.message);
-          showMap(data["longitude"],data["latitude"]);
-          if (data["summary"] === undefined)
-          {
-            grandPy.botAnswer(grandPy.wikiNotFound);
-          }
-          else
-          {
-            grandPy.botAnswer(grandPy.wikiFound)
-            grandPy.botAnswer(data["summary"]);
-          };    
-        }
-
-        //Add catch !
-      })
-}
-
-submit.addEventListener("submit",function(event)
-{
-    fetching();
-    event.preventDefault();
-})
 
 function showQuestion(question)
 {
@@ -144,7 +104,104 @@ function showQuestion(question)
       </div>
     </div>`;
 
-  userDiv.innerHTML = userMessageTemplate + '</div>';
-  submitNodeParent.insertBefore(userDiv,submit);
+  userDiv.innerHTML = userMessageTemplate;
+  chatbox.appendChild(userDiv);
 
 }
+
+function growingSpinnerAnimation(situation)
+{
+  if(situation === 1)
+  {  
+      let botDivLoad = document.createElement('div');
+      botDivLoad.setAttribute('id','loading')
+      let loadingTemplate = `
+          <div class="spinner-grow" role="status">
+          <span class="sr-only">Loading...</span>
+        </div></div>`
+      botDivLoad.innerHTML = loadingTemplate;
+      chatbox.appendChild(botDivLoad);
+  }
+  else(situation === 2 )
+  {
+    let botDivLoad = document.getElementById('loading');
+    chatbox.removeChild(botDivLoad)
+
+  }
+}
+
+
+function fetching()
+{
+      
+      // I should set the animation here before the post request 
+      let body = {question : document.getElementById("value").value};
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
+
+      fetch('/submit', {
+              // Specify the method
+              method: 'POST',
+              // A JSON payload
+              body: JSON.stringify(body),
+              headers: myHeaders
+            })
+            .then(function (response) 
+            { 
+              // At this point, Flask dealted with the question
+                let user_input = document.getElementById("value");
+                showQuestion(user_input.value);
+                scrollToBottom();
+                user_input.value = '';
+                growingSpinnerAnimation(1);
+                
+                return response.json();
+
+            })
+            .then(delay(1000))
+            .then(function (data)
+            {
+                // I should remove the animation about here as we have our data 
+                let adresseState = grandPy.botAdressResponse(data['adresse']);
+                if (adresseState.found === false)
+                {
+                  grandPy.botAnswer(adresseState.message);
+                }
+                else
+                {
+                  grandPy.botAnswer(adresseState.message);
+                  scrollToBottom();
+                  return data;
+                }
+            })
+            .then(delay(1000))
+            .then(function(data)
+            {
+                showMap(data["longitude"],data["latitude"]);
+                scrollToBottom();
+                return data
+            })
+            .then(delay(1000))
+            .then(function(data)
+            {
+                if (data["summary"] === undefined)
+                {
+                    grandPy.botAnswer(grandPy.wikiNotFound);
+                    scrollToBottom();
+                }
+                else
+                {
+                    grandPy.botAnswer(grandPy.wikiFound);
+                    scrollToBottom();
+                    grandPy.botAnswer(data["summary"]);
+                    scrollToBottom();
+                };    
+            })
+        //Add catch !
+};
+
+submit.addEventListener("submit",function(event)
+{
+    fetching();
+    event.preventDefault();
+})

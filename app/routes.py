@@ -2,6 +2,7 @@ from flask import render_template,request, jsonify, make_response, request
 from app.functions import *
 from app import app
 
+
 @app.route('/') #Decorator which binds the url given ('/') to the function home.
 @app.route('/home') #When a browser request this URL, FLASK give the return value as RESPONSE.
 def home():
@@ -30,10 +31,10 @@ def submit():
         location_wiki_summary = location_wiki.get_summary(location_wiki_page_id)
         if location_wiki_summary == False:
             return make_response(jsonify(location_wiki_summary))
-
         info_jsonified = jsonify(adresse = location_maps["formatted_address"],
                                 latitude = (location_maps["geometry"]["location"]["lat"]),
                                 longitude = (location_maps["geometry"]["location"]["lng"]),
                                 summary = location_wiki_summary)
                                 
         return make_response(info_jsonified)
+    

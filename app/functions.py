@@ -1,9 +1,6 @@
 #This file will host all of our python functions
 import os, json, requests
-
-GOOGLE_API_KEY = 'AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE'
-
-
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 try : 
     with open('app/parser.json','r') as file:
         parser_json = json.load(file)
@@ -44,7 +41,6 @@ class Maps():
         '''This method will take in a sentence parsed and
             return a json file with a formatted adresse 
             latitude and longitude.'''
-    
         maps_url_format = f'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={sentence_parsed}&inputtype=textquery&fields=formatted_address,geometry/location&key={GOOGLE_API_KEY}'
         location_infos = requests.get(maps_url_format).json()
         if location_infos['status'] == 'OK':
