@@ -1,7 +1,59 @@
+let submit = document.getElementById('form');
+let submitNodeParent = submit.parentNode;
 
-let chatbox = document.getElementById('chatbox');
+class Bot
+{
+    constructor()
+    {
+      this.greeting = `Evidement que je peux te trouver ca ! 
+                      Laisse moi quelques secondes pour me rappeller d'une bonne histoire.`
+      this.wikiNotFound = `Malheuresement l'age a eu raison de moi !
+                          Je n'arrive pas a me souvenir d'accedote sur cette endroit.`
+      this.wikiFound =`Dis moi savais tu cela ?`
+    }
 
+    botAdressResponse(adresse)
+    {
+      console.log('adresse : '+adresse)
+      if (adresse === undefined)
+      {
+        let adressState = {
+          found : false,
+          message : `Il semblerait que tu m'ais mal posé ta question
+                    car je ne trouve aucune adresse pour ta recherche.
+                    Reessaie, nous pouvons tous nous tromper.`
+        };
+        return adressState;
 
+      }
+      else
+      {
+        let adressState = {
+          found : true,
+          message : `Ah ! Je me disais que cela me rappelait quelque chose !
+                    Ce que tu recherches se situe la : `+adresse+`.`
+        };
+        return adressState;
+      };
+    }
+    
+    botAnswer(answer)
+    {
+      let botDiv = document.createElement('div');
+      botDiv.setAttribute('class','botMessage');
+
+      let template = `
+      <div class="media-body ml-3">
+        <div class="bg-light rounded py-2 px-3 mb-2">
+          <p class="text-small mb-0 text-muted">`+answer+`</p>
+        </div>
+      </div>
+    </div>`
+
+    botDiv.innerHTML = template + '</div>';
+    submitNodeParent.insertBefore(botDiv,submit);
+    }
+  }
 
 function showMap(longitude, latitude)
 {
@@ -13,10 +65,9 @@ function showMap(longitude, latitude)
   };
   let createDivMap = document.createElement('div');
   createDivMap.setAttribute('class','map');
-  chatbox.appendChild(createDivMap);
+  submitNodeParent.insertBefore(createDivMap,submit);
   let divMap = document.getElementsByClassName('map')
   size = divMap.length;
-  console.log(size)
   let map = new google.maps.Map(divMap[size-1], options_map);
   let marker = new google.maps.Marker({position : location, map:map});
   //Add info on the marker
@@ -41,37 +92,59 @@ function fetching()
       })
       .then(function (response) { // At this point, Flask dealted with the question
         let user_input = document.getElementById("value");
-        let question = document.createElement('p')
-        
-        question.setAttribute('class','user');
-        console.log(user_input.value)
-        chatbox.appendChild(question);
-        question.innerHTML = user_input.value;
-        user_input.value='';
-        console.log(response.status)
+        showQuestion(user_input.value);
+        user_input.value = '';
         return response.json();
       })
       .then(function (data) {
         // I should remove the animation about here as we have our data 
-        let returned_adress = document.createElement('p');
-        let history = document.createElement('p');
-        returned_adress.setAttribute('class','bot');
-        history.setAttribute('class','bot');
-        console.log(data);
+        let grandPy = new Bot;
+        let adresseState = grandPy.botAdressResponse(data['adresse']);
+        console.log(adresseState)
+        if (adresseState.found === false)
+        {
+          grandPy.botAnswer(adresseState.message);
+        }
+        else
+        {
+          grandPy.botAnswer(adresseState.message);
+          showMap(data["longitude"],data["latitude"]);
+          if (data["summary"] === undefined)
+          {
+            grandPy.botAnswer(grandPy.wikiNotFound);
+          }
+          else
+          {
+            grandPy.botAnswer(grandPy.wikiFound)
+            grandPy.botAnswer(data["summary"]);
+          };    
+        }
 
-        chatbox.appendChild(returned_adress);
-        returned_adress.innerHTML = data['adresse'];
-        showMap(data["longitude"],data["latitude"]);
-        chatbox.appendChild(history)
-        history.innerHTML = data["summary"];
-      
         //Add catch !
       })
 }
 
-let submit = document.getElementById("form");
 submit.addEventListener("submit",function(event)
 {
     fetching();
     event.preventDefault();
 })
+
+function showQuestion(question)
+{
+  let userDiv = document.createElement('div');
+  userDiv.setAttribute('class','userMessage');
+  
+  let userMessageTemplate = `
+    <div class="media w-50 ml-auto mb-3">
+      <div class="media-body">
+        <div class="bg-primary rounded py-2 px-3 mb-2">
+          <p class="text-small mb-0 text-white">`+question+`</p>
+        </div>
+      </div>
+    </div>`;
+
+  userDiv.innerHTML = userMessageTemplate + '</div>';
+  submitNodeParent.insertBefore(userDiv,submit);
+
+}

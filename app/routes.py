@@ -17,11 +17,20 @@ def submit():
         # Our question has been parsed time to send it to the google API
 
         location_maps = Maps.google_api(sentence_parsed)
+        if location_maps == False:
+            return make_response(jsonify(location_maps))
         location_wiki = Wiki_API(sentence_parsed,
                                 location_maps["geometry"]["location"]["lat"],
                                 location_maps["geometry"]["location"]["lng"])
+
         location_wiki_page_id = location_wiki.get_page_id()
+        if location_wiki_page_id == False:
+            return make_response(jsonify(location_wiki_page_id))
+
         location_wiki_summary = location_wiki.get_summary(location_wiki_page_id)
+        if location_wiki_summary == False:
+            return make_response(jsonify(location_wiki_summary))
+
         info_jsonified = jsonify(adresse = location_maps["formatted_address"],
                                 latitude = (location_maps["geometry"]["location"]["lat"]),
                                 longitude = (location_maps["geometry"]["location"]["lng"]),

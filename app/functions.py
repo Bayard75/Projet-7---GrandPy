@@ -79,8 +79,12 @@ class Wiki_API():
 
         response = requests.get(self.url,params=PARAMS)
         data = response.json()
-        first_page_id = data["query"]["geosearch"][0]["pageid"]
-        return first_page_id
+        try :
+            first_page_id = data["query"]["geosearch"][0]["pageid"]
+            return first_page_id
+
+        except KeyError:
+            return False
     
     def get_summary(self,page_id):
         """This function will return the summary of a article
@@ -95,9 +99,12 @@ class Wiki_API():
             'pageids': page_id
         }
 
-        response = requests.get(self.url, params=PARAMS)
-        data = response.json()
-        return data["query"]["pages"][str(page_id)]['extract']
+        try :
+            response = requests.get(self.url, params=PARAMS)
+            data = response.json()
+            return data["query"]["pages"][str(page_id)]['extract']
+        except:
+            return False
 
 if __name__=="__main__":
     pass
