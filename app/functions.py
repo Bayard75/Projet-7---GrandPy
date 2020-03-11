@@ -110,3 +110,9 @@ class Wiki_API():
 
 if __name__=="__main__":
     pass
+
+a= sentence_to_list("Bonsoir Grandpy, j'espère que tu as passé une belle semaine. Est-ce que tu pourrais m'indiquer l'adresse de la tour eiffel?")
+b = parserKiller(a)
+print(a)
+print(b)
+print(Maps.google_api(b))
