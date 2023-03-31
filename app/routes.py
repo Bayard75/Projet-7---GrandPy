@@ -9,19 +9,16 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     longitude = db.Column(db.String)
     latitude = db.Column(db.String)
-try:
-    db.create_all()
-    gp_1 = User(id=1, longitude='48.875640', latitude='2.359587')
-    gp_2 = User(id=2, longitude='48.863148', latitude='2.344904')
-    gp_3 = User(id=3, longitude='48.869892', latitude='2.352425')
-    gp_4 = User(id=4, longitude='48.867622', latitude='2.362921')
-    db.session.add(gp_1)
-    db.session.add(gp_2)
-    db.session.add(gp_3)
-    db.session.add(gp_4)
-    db.session.commit()
-except:
-    pass
+db.create_all()
+gp_1 = User(id=1, longitude='48.875640', latitude='2.359587')
+gp_2 = User(id=2, longitude='48.863148', latitude='2.344904')
+gp_3 = User(id=3, longitude='48.869892', latitude='2.352425')
+gp_4 = User(id=4, longitude='48.867622', latitude='2.362921')
+db.session.add(gp_1)
+db.session.add(gp_2)
+db.session.add(gp_3)
+db.session.add(gp_4)
+db.session.commit()
 @app.route('/') #Decorator which binds the url given ('/') to the function home.
 @app.route('/home') #When a browser request this URL, FLASK give the return value as RESPONSE.
 def home():
