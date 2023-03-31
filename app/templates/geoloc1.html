@@ -42,13 +42,13 @@ function showPosition(position) {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
   
-  fetch('http://127.0.0.1:5000/home', {
-          // Specify the method
-          method: 'POST',
-          // A JSON payload
-          body: JSON.stringify(body),
-          headers: myHeaders
-        })
+  fetch('/home', {
+    // Specify the method
+    method: 'POST',
+    // A JSON payload
+    body: JSON.stringify(body),
+    headers: myHeaders
+  })
 }
 getLocation()
 </script>
