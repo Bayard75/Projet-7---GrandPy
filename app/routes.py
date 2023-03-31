@@ -19,18 +19,9 @@ db.session.add(gp_2)
 db.session.add(gp_3)
 db.session.add(gp_4)
 db.session.commit()
-@app.route('/') #Decorator which binds the url given ('/') to the function home.
-@app.route('/home') #When a browser request this URL, FLASK give the return value as RESPONSE.
+@app.route('/', methods=['GET', 'POST']) #Decorator which binds the url given ('/') to the function home.
+@app.route('/home', methods=['GET', 'POST']) #When a browser request this URL, FLASK give the return value as RESPONSE.
 def home():
-    data = []
-    data.append(["groupe1", User.query.filter_by(id=1).first().longitude, User.query.filter_by(id=1).first().latitude])
-    data.append(["groupe1", User.query.filter_by(id=2).first().longitude, User.query.filter_by(id=2).first().latitude])
-    data.append(["groupe1", User.query.filter_by(id=3).first().longitude, User.query.filter_by(id=3).first().latitude])
-    data.append(["groupe1", User.query.filter_by(id=4).first().longitude, User.query.filter_by(id=4).first().latitude])
-    return render_template('home.html', title = 'H24 Koltes', data_loc=data)
-
-@app.route('/submit', methods=['POST'])
-def submit():
     if request.method == 'POST':
         loca = request.get_json()
         print(loca)
@@ -39,4 +30,25 @@ def submit():
         q.latitude = loca['longitude']
         db.session.commit()
         return make_response(loca)
-    
+    else:
+        data = []
+        data.append(["groupe1", User.query.filter_by(id=1).first().longitude, User.query.filter_by(id=1).first().latitude])
+        data.append(["groupe1", User.query.filter_by(id=2).first().longitude, User.query.filter_by(id=2).first().latitude])
+        data.append(["groupe1", User.query.filter_by(id=3).first().longitude, User.query.filter_by(id=3).first().latitude])
+        data.append(["groupe1", User.query.filter_by(id=4).first().longitude, User.query.filter_by(id=4).first().latitude])
+        return render_template('home.html', title = 'H24 Koltes', data_loc=data)
+
+@app.route('/geoloc1', methods=['GET'])
+def geo1():
+    return render_template('geoloc1.html')
+
+@app.route('/geoloc2', methods=['GET'])
+def geo2():
+    return render_template('geoloc2.html')
+
+@app.route('/geoloc3', methods=['GET'])
+def geo3():
+    return render_template('geoloc3.html')
+@app.route('/geoloc4', methods=['GET'])
+def geo4():
+    return render_template('geoloc4.html')

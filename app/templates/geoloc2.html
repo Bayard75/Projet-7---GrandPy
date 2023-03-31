@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>act1loca</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Map-locations-2-1.css">
+    <link rel="stylesheet" href="assets/css/Map-locations-2.css">
+    <link rel="stylesheet" href="assets/css/News-Cards.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div class="highlight-blue">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Geolocation groupe 2&nbsp;</h2>
+                <p class="text-center">Envoie de votre localisation au site principal</p>
+            </div>
+            <div class="buttons"><a class="btn btn-primary" role="button" href="#">restez sur la page !</a></div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><span id="longitude" style="visibility: hidden;">Text</span><span id="latitude" style="visibility: hidden;">Text</span><script>
+var lat = document.getElementById("latitude");
+var long = document.getElementById("longitude");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position) {
+  let body = {group: 2, latitude:position.coords.latitude, longitude:position.coords.longitude}
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type","application/json"); //Important or request.get_json() returns None 
+  
+  fetch('/home', {
+          // Specify the method
+          method: 'POST',
+          // A JSON payload
+          body: JSON.stringify(body),
+          headers: myHeaders
+        })
+}
+getLocation()
+</script>
+</div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Map-locations-2.js"></script>
+</body>
+
+</html>
