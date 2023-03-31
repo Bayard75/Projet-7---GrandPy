@@ -18,7 +18,10 @@ db.session.add(gp_1)
 db.session.add(gp_2)
 db.session.add(gp_3)
 db.session.add(gp_4)
-db.session.commit()
+try:
+    db.session.commit()
+except:
+    pass
 @app.route('/') #Decorator which binds the url given ('/') to the function home.
 @app.route('/home') #When a browser request this URL, FLASK give the return value as RESPONSE.
 def home():
