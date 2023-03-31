@@ -1,68 +1,220 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 
 <head>
     <meta charset="utf-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>GrandPy The Bot </title>
+    <title>Home - H24 koltès</title>
     <link rel="stylesheet" href="{{url_for('static',filename ='bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
-    <link rel="stylesheet" href="static/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="static/css/Footer-Basic.css">
-    <link rel="stylesheet" href="static/css/Footer-Dark.css">
-    <link rel="stylesheet" href="static/css/Header-Dark.css">
-    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="shortcut icon" href="static/img/favicon.ico">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="{{url_for('static',filename ='fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/Lightbox-Gallery.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/Simple-Slider.css')}}">
 </head>
-
-<body>
-    <div class="header-dark">
-            <header>
-                <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
-                    <div class="container"><a class="navbar-brand">GrandPy The Bot</a><img src="static/img/papy.jpg" style="width: 98px;"></div>
-                </nav>
-                <h1 class="text-center" style="color: #d9d9d9;"><br>Donne moi une adresse et je te raconterais son histoire.<br><br></h1>
-            </header>
-            <main>
-                <div class="container-hero" >
-                        <div class="col-md-8 offset-md-2" id="container" >
-                            <div class="px-4 py-5 bg-white container" id='chatbox'>
-                            <!--The chatbox begins here-->
-
-
-                            </div>
-                            <!---User input Area !-->
-                        <form id='form' class="bg-light" >
-                            <div class="input-group">
-                                <input id ='value' type="text" placeholder="Quelle adresse cherches tu ?" class="form-control rounded-0 border-0 py-4 bg-light size='100'">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary">Envoyer</button>
-                                     </div>
-                             </div>
-                        </form>
-                        </div>
-                    </div>
-            </main>
-        </div>
-    <div class="footer-basic">
-        <footer>
-            <div class="social">
-                <a href="https://www.linkedin.com/in/bayard-maniraho-638998180/" target="_blank"><i class="icon ion-social-linkedin"></i>
-                </a><a href="https://github.com/Bayard75" target="_blank"><i class="icon ion-social-github"></i>
-                </a><a href="https://twitter.com/BayardManiraho" target="_blank"><i class="icon ion-social-twitter"></i></a>
+<h1 id="data_loc">{{data_loc}}</h1>
+<body id="page-top">
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#" style="/*background-image: url(&quot;/static/img/Logo_H242.png&quot;);*/">H24 koltès</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger"><a class="nav-link active js-scroll-trigger" href="#about">LE PROJET</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger"><a class="nav-link js-scroll-trigger" href="#trajet">Le trajet</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger"><a class="nav-link js-scroll-trigger" href="#participants">Les participants</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger"><a class="nav-link js-scroll-trigger" href="#galerie">Galerie</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger"><a class="nav-link active js-scroll-trigger" href="#don">faire un don<br></a></li>
+                </ul>
             </div>
-            <p class="copyright">Site crée par Bayard Maniraho @2020</p>
-        </footer>
+        </div>
+    </nav>
+    </script>    <header class="masthead" style="background: url(&quot;/static/img/photo_1ere_page.png&quot;) center / cover no-repeat;">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row" style="margin-right: -12px;">
+                    <div class="col-lg-8 text-center align-self-center mx-auto">
+                        <h1 class="brand-heading"><img src="/static/img/Logo_H242.png" style="margin: auto;max-width: 100%;margin-top: 200px;"></h1>
+                        <p class="intro-text" style="margin: 0px;">Une manifestation théâtrale publique au service de la lutte contre la précarité et le mal-logement.<br><br><strong><em>La nuit juste avant les forêts</em></strong><br><br>- Bernard-Marie Koltès -<br></p>
+                    </div>
+                    <div class="col-lg-8 text-center align-self-center mx-auto">
+                        <p class="intro-text" style="margin: 0px;font-size: 18px;"><br>Sous la forme d’un monologue, un homme, sans réelle identité, se raconte, pour retenir par tous les mots possibles un inconnu abordé au coin d’une rue, un soir de pluie. Il lui partage ses idées, ses amours, ses déboires, et son quotidien à travers les bruits et les odeurs de la ville, lorsqu’on est étranger, où que l’on ne travaille plus ; un univers nocturne qu’il traverse en courant, une fois, deux fois, trois fois.<br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section data-aos="fade" id="about" class="content-section text-center" style="padding: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>LE projet</h2><iframe allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/4T53djaAWX0" style="/* width: 225px; *//* padding-right: 77px; */"></iframe>
+                    <p><br>Une trentaine de comédien.ne.s<br>interprêtent durant 24 heures<br>sans interruption «La nuit juste avant<br>les forêts » de Bernard-Marie Koltès,<br>sous forme de relais, en déambulation<br>dans les rues de Paris.<br><br></p>
+                    <h2>Quand ? Du 31 mars au 1 ER avril</h2>
+                    <p></p>
+                    <p>Le 31 mars est une date symbolique pour la lutte contre le mal-logement puisqu'elle représente la fin de la trêve hivernale, période durant laquelle il est interdit d'expulser quelqu'un de son domicile.</p><button class="btn btn-primary" data-bs-hover-animate="pulse" type="button"><a href="https://cdn.fbsbx.com/v/t59.2708-21/339027625_181665967552701_3768308468362755811_n.pdf/H24Koltes_A4_programme.pdf?_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=0cab14&amp;_nc_ohc=NPWhuID9Mf4AX_7-rLT&amp;_nc_ht=cdn.fbsbx.com&amp;oh=03_AdSjIeJwi6in1FbmYeL25sUlu__BXjtE6HmnMTH0CfZIHg&amp;oe=6428B696&amp;dl=1" style="font-style: bold;color: rgb(4,4,4);" target="_blank">TELECHARGER LE PROGRAMME</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section data-aos="fade" id="about-1" class="content-section text-center" style="background: url(&quot;/static/img/photo%20concept.jpeg&quot;) center no-repeat;">
+        <div class="container">
+            <div class="row align-items-center" style="/*background: rgba(60,64,67,0.5);*/color: rgb(0,0,0);font-size: 18px;font-weight: bold;">
+                <div class="col-md-4" style="/*height: 771px;*/">
+                    <p style="background: rgba(255,255,255,0.42);color: rgb(0,0,0);font-size: 18px;"><br><br><br><strong>Utiliser le</strong><br><strong>théâtre </strong><br><strong>pour éveiller</strong><br><strong>les consciences </strong><br><strong>et récolter</strong><br><strong>des dons pour </strong><br>le Secours Populaire<br><br><br><br><br></p>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <p style="background: rgba(255,255,255,0.42);rgba(255,255,255,0.42);: 514px;"><br><br><strong>Transformer</strong><br><strong>l’espace public </strong><br><strong>en scène</strong><br><strong>universelle</strong><br><strong>pour un théâtre</strong><br><strong>accessible</strong><br><strong>à tous.tes</strong><br><br><br><br><br><br><br></p>
+                </div>
+                <div class="col-md-4 align-self-center">
+                    <p style="background: rgba(255,255,255,0.42);padding: 10px;"><br><br><br><strong>Créer une</strong><br><strong>performance inédite et</strong><br><strong>impactante pour investir </strong><br><strong>continuellement&nbsp;Paris </strong><br><strong>de poésie</strong><br><br><br><br><br><br></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="trajet" class="download-section content-section text-center" style="background: url(&quot;/static/img/photo_le_trajet.png&quot;) center / cover no-repeat;padding-bottom: 0px;padding-top: 52px;">
+        <div class="container">
+            <h1>LE TRAJET</h1>
+            <div class="row row-cols-2 text-center d-flex flex-column-reverse">
+                <div class="col-10 offset-1 text-right justify-content-end align-items-start justify-content-lg-start"><img src="/static/img/337165076_239004461825756_6304016845611893091_n.png" style="width: 100%;"><img class="d-lg-flex justify-content-lg-center" src="/static/img/Capture%20d’écran%202023-03-31%20152824.png" style="width: 100%;"></div>
+            </div>
+            <div class="row row-cols-2 text-center d-flex flex-column-reverse">
+                <div class="col-11 col-lg-8 col-xl-8 mx-auto">
+                    <p style="font-size: 20px;"><br>En passant par République, Gare de l’Est, Les Halles,<br>et Strasbourg Saint-Denis, l’enjeu est de faire entendre<br>notre engagement au travers de cette pièce.<br><br></p>
+                    <p style="font-size: 20px;">Sur les points relais, vous pourrez retrouver à toute heure un.e bénévole pour vous informer<br></p>
+                    <p style="font-size: 20px;">Vous pouvez aussi suivre en temps réel la&nbsp;<br>déambulation des comédien.ne.s ci dessous, chaque point represente un groupe de comédien.ne.s.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="map-clean"><div id="map"></div>
+<script async 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoaYRdJCzs15gqJJAJB-eZ3TEdj-1ThWo&callback=initMap">
+</script>
+<script src="/static/js/home.js">
+    localte_all()
+</script>
+    <section data-aos="fade" id="participants" class="download-section content-section text-center" style="background: url(&quot;/static/img/photo%20les%20come╠üdiens.jpeg&quot;) center / cover no-repeat;padding-bottom: 55px;padding-top: 0px;">
+        <div class="container">
+            <div class="col-lg-8 col-xl-12 mx-auto" style="color: var(--dark);font-weight: 1000;font-style: bold;">
+                <h1 class="text-white" style="color: rgb(0,0,0);">Les Comedien.NE.S</h1>
+                <p class="text-light" style="color: rgb(0,0,0);font-weight: bold;text-align: center;"><strong>Alice Acomat</strong><br><strong>Loïc Azorin</strong><br><strong>Alyssa Ben Zekri</strong><br><strong>Florence Banks</strong><br><strong>Djerry Bernard</strong><br><strong>Carmen Borde-Sevilla</strong><br><strong>Blandine Bourdy</strong><br><strong>Amélie Bovay</strong><br><strong>Claire Choquet</strong><br><strong>Battiste Costa</strong><br><strong>Théo De Pasquale</strong><br><strong>René Yapi</strong><br><strong>Roman Donato</strong><br><strong>Livio Dorvilma</strong><br><strong>Kwet Dupic</strong><br><strong>David Dupuis</strong><br><strong>Anouchka Enten</strong><br><strong>Estelle Florin</strong><br><strong>Bertille Gauffeny</strong><br><strong>Yaëlle Giraud</strong><br><strong>Margaux Hajjar</strong><br><strong>Margot Janet</strong><br><strong>Sarah Laffon</strong><br><strong>Ruben Lemonnier</strong><br><strong>Héloïse Marty</strong><br><strong>Lucile Roux-Baucher</strong><br><strong>Sabrine Sidki</strong><br><strong>Jean Thievenaz</strong><br><strong>Paul Villeminot</strong><br></p>
+            </div>
+        </div>
+    </section>
+    <div class="row" style="margin: 0px;margin-top: 30px;margin-bottom: 25px;">
+        <div class="col">
+            <h1 style="text-align: center;">Les invervenants</h1>
+        </div>
     </div>
-
-
-    <script src="static/js/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="{{url_for('static',filename='js/home.js')}}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQQOAFsvFsdCHFRMCg8RFlZbV8COmZwVE">
+    <div class="carousel slide" data-ride="carousel" data-aos="fade" id="carousel-1">
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="color: rgb(107,111,115);font-size: 16px;background: #000000;">
+                <div class="col" style="text-align: center;">
+                    <h3 style="text-align: center;color: rgb(255,255,255);margin-bottom: 0;height: 123px;margin-top: -21px;background: #000000;"><br>Tatiana Spivakova<br><br><br></h3><img src="/static/img/tatiana.jpg" style="max-width: 100%;">
+                </div>
+                <div class="col-xl-9 offset-xl-1">
+                    <p style="padding-right: 50px;padding-left: 50px;padding-bottom: 25px;text-align: center;margin-right: -27px;color: rgb(223,229,235);margin-top: 10px;">Comédienne, metteuse en scène, autrice et musicienne, Tatiana Spivakova a tout d’abord suivi des cours de formation musicale, chant, et danse classique au Conservatoire municipal Francis Poulenc avant d’obtenir un diplôme de fin d’études en flûte traversière au CNR d’Aubervilliers.<br><br>Parallèlement, elle se forme au Cours Simon puis est reçue au concours de la Classe Libre du Cours Florent, et au Conservatoire National Supérieur d’Art Dramatique de Paris (dont une année passée à la LAMDA).<br><br>D’origine arménienne et russe, Tatiana est quadrilingue et se produit ainsi sur de nombreuses scènes nationales ou internationales, participant à de nombreux festivals de théâtre ou de musique à travers le monde. <br><br>Tatiana Spivakova intervient en tant que metteuse en scène sur la performance collective du 1er avril, place de la République.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="color: rgb(107,111,115);font-size: 16px;background: #000000;">
+                <div class="col" style="text-align: center;">
+                    <h3 style="text-align: center;color: rgb(255,255,255);margin-bottom: 0;height: 123px;margin-top: -21px;background: #000000;"><br>Sonia al khadir<br><br></h3><img src="/static/img/15033008704_446e0bc1ad_h%20(1).jpg" style="/*position: center;*/">
+                </div>
+                <div class="col-xl-9 offset-xl-1">
+                    <p style="padding-right: 50px;padding-left: 50px;padding-bottom: 25px;text-align: center;margin-right: -27px;color: rgb(223,229,235);margin-top: 10px;">Danseuse interprète, enseignante et chorégraphe, Sonia Al Khadir obtient sa médaille au conservatoire en 2013 à Paris et son Diplôme d’État aux RIDC en 2015. En 2016, elle est lauréate de la Pépinière de chorégraphes de la compagnie Fêtes galantes – Béatrice Massin. Elle crée la compagnie Corpoéma en 2019.<br> <br>Elle enseigne régulièrement dans différentes structures et conservatoires en France et à l’étranger. Sa sensibilité pour les projets transversaux l’amène à collaborer régulièrement avec des musiciens, artistes plasticiens, comédiens pour des performances et créations.<br> <br>Sonia Al Khadir intervient en tant que chorégraphe sur la performance collective du 1er avril, place de la République.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="color: rgb(107,111,115);font-size: 16px;background: #000000;">
+                <div class="col" style="text-align: center;">
+                    <h3 style="text-align: center;color: rgb(255,255,255);margin-bottom: 0;height: 123px;margin-top: -21px;background: #000000;"><br>Samuel marot<br><br></h3><img src="/static/img/samuel.jpg">
+                </div>
+                <div class="col-xl-9 offset-xl-1">
+                    <p style="padding-right: 50px;padding-left: 50px;padding-bottom: 25px;text-align: center;margin-right: -27px;color: rgb(223,229,235);margin-top: 10px;">Samuel est compositeur, sound designer et violoncelliste. Son parcours musical commence très tôt dès six ans par l’étude du violoncelle auprès de Martine Bailly au conservatoire du 13(e) arrondissement de Paris. <br> <br>Il intègre par la suite la classe d’orchestration d’Olivier Calmel et obtient son Diplôme d’Etudes Musicales en Musique à l’image du Conservatoire Régional de Paris auprès d’Emmanuel d’Orlando et Pierre Doursout. Samuel compose à l’image depuis 2018 et a collaboré à une vingtaine de courts-métrages ainsi qu’à des films d’animation. Depuis 2022, il crée de la musique live pour le spectacle vivant. <br> <br>Samuel Marot intervient en tant que de compositeur pour la performance collective du 1er avril, Place de la République.</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="color: rgb(107,111,115);font-size: 16px;background: #000000;">
+                <div class="col" style="text-align: center;">
+                    <h3 style="text-align: center;color: rgb(255,255,255);margin-bottom: 0;height: 123px;margin-top: -21px;background: #000000;"><br>denis lavant</h3><img src="/static/img/Capture%20d’écran%202023-03-31%20160913.png">
+                </div>
+                <div class="col-xl-9 offset-xl-1">
+                    <p style="padding-right: 50px;padding-left: 50px;padding-bottom: 25px;text-align: center;margin-right: -27px;color: rgb(223,229,235);margin-top: 10px;">Comédien, dès 13 ans, il prend des cours de clown et de pantomime, fasciné par Marcel Marceau. Formé au Conservatoire National Supérieur d’Art Dramatique, il sera révélé au cinéma par Leos Carax qui lui confie le rôle masculin emblématique d’Alex dans Boy Meets Girl, puis dans Les Amants du Pont-Neuf aux côtés de Juliette Binoche, Mauvais Sang, puis dans Tokyo! et Holy Motors qui lui vaudra une nomination au césar du meilleur acteur en 2013.<br> <br>Au théâtre il collabore avec Jacques Osinski, Aurore Fattier, Bernard Sobel, Marc Paquien, Ivan Morane, etc. <br> <br>Denis Lavant intervient en qualité de comédien, en animant des ateliers de jeu sur La nuit juste avant les forêts. Dans un souci du mot, de la langue et du mouvement du texte, il dirige ses ateliers comme des expérimentations, en mettant à profit sa propre expérience de La nuit juste avant la forêt, qu’il a interprétée en 2001 à Paris et au Québec.</p>
+                </div>
+            </div>
+        </div>
+        <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-slide="next"><span class="carousel-control-next-icon"></span><span class="sr-only">Next</span></a></div>
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-1" data-slide-to="1"></li>
+            <li data-target="#carousel-1" data-slide-to="2"></li>
+            <li data-target="#carousel-1" data-slide-to="3"></li>
+        </ol>
+    </div>
+    <section data-aos="fade" id="don" class="content-section text-center" style="padding-top: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Faire un don</h2><img src="/static/img/1418310045.jpg" style="width: 50%;">
+                    <p class="text-center" style="padding-top: 22px;">Les dons récoltés pendant ces 24h seront reversés au Secours Populaire de Paris.<br>Le Secours populaire s’est donnée pour mission d’agir contre la pauvreté et l’exclusion sous toutes ses formes, en France et dans le monde.</p><button class="btn btn-primary" data-bs-hover-animate="pulse" type="button"><a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.helloasso.com%2Fassociations%2Fcollectif-804%2Fformulaires%2F1%3F_ga%3D2.122955145.328105225.1680086680-373680499.1680086680%26_gac%3D1.116399476.1680086694.Cj0KCQjww4-hBhCtARIsAC9gR3b7RxaxpIrBBWxBUvou9d5waG5tjcmXrJGaDeUODi4IGjNAFDmmgK4aAgAsEALw_wcB%26_gl%3D1*j0ine4*_ga*MzczNjgwNDk5LjE2ODAwODY2ODA.*_ga_TKC826G3G2*MTY4MDA4NjY4MC4xLjEuMTY4MDA5MDMxNS4wLjAuMA%26fbclid%3DIwAR1zgAZDF9joTkMw-JDPzmnZi_e_NN1qT7mY-0lQgARbouQOfvqJ_n5E9x8&amp;h=AT0gUSxY8UsftIIFI12tsTDSe5GKdD-s_JFlif0fH1bGmbktbjQuiZLvOWkLbnCrQoCo3u1yigFNHFsN-9qGYt39O4A1khZGoP5NgZ3ZsjeXrENFTm5pbvNLh6FWA8dPboM" target="_blank" style="color: var(--dark);font-style: bold;">Faire un don</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="galerie" class="photo-gallery">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">galerie</h2>
+                <p class="text-center"></p>
+            </div>
+            <div class="row row-cols-1 justify-content-center photos">
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-13%20à%2011.19.32.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-13%20à%2011.19.32.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-10%20à%2011.48.43.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-10%20à%2011.48.43.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/337516564_1395337034573601_6870491217563824989_n.png"><img class="img-fluid" src="/static/img/337516564_1395337034573601_6870491217563824989_n.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-14%20à%2011.58.54.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-14%20à%2011.58.54.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-14%20à%2011.56.36.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-14%20à%2011.56.36.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-14%20à%2011.59.03.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-14%20à%2011.59.03.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-13%20à%2011.21.03.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-13%20à%2011.21.03.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-14%20à%2011.59.22.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-14%20à%2011.59.22.png" style="/*height: auto;*/"></a></div>
+                <div class="col item"><a data-lightbox="photos" href="/static/img/Capture%20d’écran%202023-03-14%20à%2011.58.23.png"><img class="img-fluid" src="/static/img/Capture%20d’écran%202023-03-14%20à%2011.58.23.png" style="/*height: auto;*/"></a></div>
+            </div>
+        </div>
+    </div>
+    <section data-aos="fade" id="gallerie-1" class="content-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 mx-auto">
+                    <h2>Nous contacter</h2>
+                    <ul class="list-inline banner-social-buttons">
+                        <li class="list-inline-item">&nbsp;<a href="https://www.facebook.com/profile.php?id=100088193978782" target="_blank" class="btn btn-primary btn-lg btn-default" type="button"><i class="fa fa-facebook-f fa-fw"></i><span class="network-name">  Facebook</span></a></li>
+                        <li class="list-inline-item">&nbsp;<a href="https://www.instagram.com/collectif804/?fbclid=IwAR1Rb378dABIx6C5X7VeYmxx3KnITHycQtydiduXvRDWv-AAjpk0IHrl0ig" target="_blank" class="btn btn-primary btn-lg btn-default" type="button"><i class="fa fa-instagram fa-fw"></i><span class="network-name">INSTAGRAM</span></a></li>
+                        <li class="list-inline-item">&nbsp;<a href="" target="_blank" class="btn btn-primary btn-lg btn-default" type="button"><i class="fa fa-envelope fa-fw"></i><span class="network-name">collectif804@gmail.com
+    </span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <p style="font-style: italic;text-align: center;">&lt;&lt;Et je ne sais toujours pas comment je pourrais le dire, quel fouillis, quel bordel, camarade, et puis toujours la pluie, la pluie, la pluie, pluie.&gt;&gt;<br><br></p>
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;H24 koltès 2023</p>
+        </div>
+    </footer>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="/static/js/grayscale.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="/static/js/Simple-Slider.js"></script>
+    <script src="/static/js/home.js">
+        localte_all()
     </script>
+
 </body>
 
 </html>
